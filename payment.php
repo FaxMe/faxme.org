@@ -1,59 +1,74 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="content-type"
-              content="text/html; charset=utf-8"/>
-       <?php
-       //
-       // Please download the Paymill PHP Wrapper using composer.
-       // If you don't already use Composer,
-       // then you probably should read the installation guide http://getcomposer.org/download/.
-       //
 
-       //Change the following constants
-       define('PAYMILL_API_KEY', 'YOUR_API_KEY');
-       define('CUSTOMER_EMAIL', 'SOME_TEST_EMAIL');
-       require 'vendor/autoload.php';
+<head>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"
+    type="text/javascript"></script>
+<title>PHP Contact Form with Add More File Attachment Option</title>
+</head>
 
-        if (isset($_POST['paymillToken'])) {
-            $service = new Paymill\Request(PAYMILL_API_KEY);
-            $client = new Paymill\Models\Request\Client();
-            $payment = new Paymill\Models\Request\Payment();
-            $transaction = new \Paymill\Models\Request\Transaction();
+<body>
+    <h1>PHP Contact Form with Add More File Attachment Option</h1>
 
-            try{
-                $client->setEmail(CUSTOMER_EMAIL);
-                $client->setDescription('This is a Testuser.');
-                $clientResponse = $service->create($client);
+    <div class="attachment-form-container">
+        <form name="mailForm" id="mailForm" method="post" action=""
+            enctype="multipart/form-data"
+            onsubmit="return validate()">
 
-                $payment->setToken($_POST['paymillToken']);
-                $payment->setClient($clientResponse->getId());
-                $paymentResponse = $service->create($payment);
+            <div class="input-row">
+                <label style="padding-top: 20px;">Name</label> <span
+                    id="userName-info" class="info"></span><br /> <input
+                    type="text" class="input-field" name="userName"
+                    id="userName" />
+            </div>
+            <div class="input-row">
+                <label>Email</label> <span id="userEmail-info"
+                    class="info"></span><br /> <input type="text"
+                    class="input-field" name="userEmail" id="userEmail" />
+            </div>
+            <div class="input-row">
+                <label>Subject</label> <span id="subject-info"
+                    class="info"></span><br /> <input type="text"
+                    class="input-field" name="subject" id="subject" />
+            </div>
+            <div class="input-row">
+                <label>Message</label> <span id="userMessage-info"
+                    class="info"></span><br />
+                <textarea name="userMessage" id="userMessage"
+                    class="input-field" id="userMessage" cols="60"
+                    rows="6"></textarea>
+            </div>
+            <div class="attachment-row">
+                <input type="file" class="input-field"
+                    name="attachment[]">
 
-                $transaction->setPayment($paymentResponse->getId());
-                $transaction->setAmount($_POST['amount'] * 100);
-                $transaction->setCurrency($_POST['currency']);
-                $transaction->setDescription('Test Transaction');
-                $transactionResponse = $service->create($transaction);
+            </div>
 
-                $title = "<h1>We appreciate your purchase!</h1>";
-                $result = print_r($transactionResponse, true);
-            } catch (\Paymill\Services\PaymillException $e){
-                $title = "<h1>An error has occoured!</h1>";
-                $result = print_r($e->getResponseCode(), true) ." <br />" . print_r($e->getResponseCode(), true) ." <br />" .print_r($e->getErrorMessage(), true);
-            }
+            <div onClick="addMoreAttachment();"
+                class="icon-add-more-attachemnt"
+                title="Add More Attachments">
+                <img src="icon-add-more-attachment.png"
+                    alt="Add More Attachments">
+            </div>
+            <div>
+                <input type="submit" name="send" class="btn-submit"
+                    value="Send" />
 
-        }
-       ?>
-    </head>
-    <body>
-    <div>
-        <?php echo $title ?>
-
-        <h4>Transaction:</h4>
-            <pre>
-                <?php echo $result ?>
-            </pre>
+                <div id="statusMessage">
+                    <?php
+                        if (! empty($message)) {
+                            ?>
+                    <p class='<?php echo $type; ?>Message'>
+                        <?php echo $message; ?>
+                    </p>
+                    <?php
+                        }
+                        ?>
+                </div>
+            </div>
+        </form>
     </div>
-    </body>
+
+</body>
 </html>
