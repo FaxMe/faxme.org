@@ -20,10 +20,8 @@
 
 	<div id="site_title">
 
-		<h1 class="left">FaxMe</h1>
-		<p>&nbsp;</p>
-		<h2 class="right">"Let us Fax, Fast and Secure!</h2>
-
+		<h1 class="center">FaxMe</h1>
+		Let us Fax, Fast and Secure!<br>
 		<div class="clearer">&nbsp;</div>
 
 	</div>
@@ -35,10 +33,6 @@
 	    
 <ul>
 				<li class="Current Page_item"><a href="index.html"><span>Homepage</span></a></li>
-				<li><a href="Resume.html"><span>Resume</span></a></li>
-				<li><a href="Research Interests.html"><span> Research Interests</span></a></li>
-				<li><a href="Publications.html"><span>Publications</span></a></li>
-				<li><a href="Teaching.html"><span>Teaching </span></a></li>
 				<li><a href="Contacts.html"><span>Contacts </span></a></li>
 	      
 </ul>
@@ -49,8 +43,6 @@
     <td align="right" width="15%">&nbsp;<img src="img/sample-gravatar.jpg" align="left" /></td>
   </tr>
 </table>
-
-	
 
 	<div class="spacer h5"></div>
 
@@ -68,10 +60,68 @@
 				
 					<div class="post_body">
 
-						<p>As a professional faxing service provider, we would like to take this oppurtunity to thank you for selecting us to Fax your documents Fast and Secure!.</p>
+						<p>As a professional faxing service provider, we would like to take this oppurtunity to thank you for selecting us to Fax your documents Fast and Secure!</p>
 					  <p>&nbsp;</p>
 
-					  <h2>About Us</h2>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+	
+<!-- Display submission status -->
+<?php if(!empty($statusMsg)){ ?>
+    <p class="statusMsg <>"></p>
+<?php } ?>
+<!-- Display contact form -->
+
+    <div>
+		    </div>
+			<script type="text/javascript" src="https://form.jotform.com/jsform/210242617791352"></script>
+<div id="smart-button-container">
+      <div style="text-align: center;">
+        <div id="paypal-button-container"></div>
+      </div>
+    </div>
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory"></script>
+  <script>
+    function initPayPalButton() {
+      paypal.Buttons({
+        style: {
+          shape: 'pill',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'paypal',
+          
+        },
+
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{"amount":{"currency_code":"USD","value":1}}]
+          });
+        },
+
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            alert('Transaction completed by ' + details.payer.name.given_name + '!');
+          });
+        },
+
+        onError: function(err) {
+          console.log(err);
+        }
+      }).render('#paypal-button-container');
+    }
+    initPayPalButton();
+  </script>     
+        <div id="success_message" style="width:50%; height:50%; display:none; ">
+            <h3>Sent your message successfully!</h3>
+        </div>
+        <div id="error_message"
+        style="width:50%; height:50%; display:none; ">
+            <h3>Error</h3>
+            Sorry there was an error sending your form.
+
+        </div>
+    </div>
+</div>
 
 						<p>.
 </div>
@@ -108,18 +158,13 @@
 					<div class="box_body">
 						<ul>
 							<li><a href="index.html">Homepage</a></li>
-							<li><a href="Resume.html">Resume</a></li>
-							<li><a href="Research_Interests.html">Research Interests</a></li>
-							<li><a href="Publications.html">Publications</a></li>
-							<li><a href="Teaching.html">Teaching</a></li>
                       		<li><a href="Contacts.html">Contacts</a></li>
 						</ul>
 					</div>
 					<div class="box_bottom"></div>
 				</div>
 				<div class="box">
-					<div class="box_title"><div id="clustrmaps-widget"></div><script type="text/javascript">var _clustrmaps = {'url' : 'http://alum.sharif.ir/~mmodarres/', 'user' : 1153844, 'server' : '4', 'id' : 'clustrmaps-widget', 'version' : 1, 'date' : '2014-12-12', 'lang' : 'en', 'corners' : 'square' };(function (){ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = 'http://www4.clustrmaps.com/counter/map.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);})();</script><noscript><a href="http://www4.clustrmaps.com/user/134119b34"><img src="http://www4.clustrmaps.com/stats/maps-no_clusters/alum.sharif.ir-~mmodarres--thumb.jpg" alt="Locations of visitors to this page" /></a></noscript>
-					<div class="center"> <iframe scrolling="no" frameborder="0" style="overflow:hidden;border:0;margin:0;padding:0;width:150px;height:150px;" src="http://www.clocklink.com/html5embed.php?clock=021&timezone=GMT0330&color=brown&size=150"></iframe></a>
+					<div class="center"> <iframe scrolling="no" frameborder="0" style="overflow:hidden;border:0;margin:0;padding:0;width:150px;height:150px;" src="http://www.clocklink.com/html5embed.php?clock=021&timezone=GMT0000&color=brown&size=150"></iframe></a>
                    
 </a>
 </div>
@@ -135,7 +180,7 @@
 
 	<div id="footer">
 
-		<div class="left">&#169; 2013 MohammadReza Modarres</div>
+		<div class="left">&#169; 2020 FaxMe Group</div>
 		<div class="clearer">&nbsp;</div>
 	
 	</div>
